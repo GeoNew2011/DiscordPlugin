@@ -1,10 +1,10 @@
 package disc;
 
 public class discConstants {
-    public static int VERSION = 1;
-    public static String diPath = "disc";
-    public static String fileName = "config.json";
-    public static String prefix = "..";
+    public static final double VERSION = 1.1;
+    public static final String diPath = "disc";
+    public static final String fileName = "config.json";
+    public static final String prefix = ";";
 
-    public static String FileNotFoundErrorMessage = "File not found: config\\mods\\settings.json";
+    public static final String FileNotFoundErrorMessage = "File not found: config/mods/settings.json";
 }

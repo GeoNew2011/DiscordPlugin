@@ -82,15 +82,10 @@ public class discordPlugin extends Plugin {
         TextChannel tc = discChannels.get("live_chat_channel_id");
         if (tc != null) {
             Events.on(EventType.PlayerChatEvent.class, event -> {
+                if(event.message.split("")[0].equals("/")) return; //don't log / commands
                 tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + event.message);
             });
         }
-    }
-
-    //register commands that run on the server
-    @Override
-    public void registerServerCommands(CommandHandler handler){
-
     }
 
     //register commands that player can invoke in-game
@@ -165,6 +160,7 @@ public class discordPlugin extends Plugin {
                                                 .setDescription(ro.getMentionTag())
                                                 .addField("name", found.name)
                                                 .addField("reason", args[1])
+                                                .addField("UUID", found.uuid())
                                                 .setColor(Color.ORANGE)
                                                 .setFooter("Reported by " + player.name))
                                         .send(tc_c);
@@ -174,6 +170,7 @@ public class discordPlugin extends Plugin {
                                                 .setTitle("Potential griefer online")
                                                 .setDescription(ro.getMentionTag())
                                                 .addField("name", found.name)
+                                                .addField("UUID", found.uuid())
                                                 .setColor(Color.ORANGE)
                                                 .setFooter("Reported by " + player.name))
                                         .send(tc_c);
@@ -209,6 +206,7 @@ public class discordPlugin extends Plugin {
                 invalidConfig = true;
                 return;
             }
+            
         }else{
             invalidConfig = true;
             return;
@@ -262,10 +260,7 @@ public class discordPlugin extends Plugin {
 
         JSONObject roles = new JSONObject();
         String[] discordRoles = {
-                "closeServer_role_id",
-                "gameOver_role_id",
-                "changeMap_role_id",
-                "serverDown_role_id"
+                "admin_role_id",
         };
         for (String field : discordRoles){
             roles.put(field, "");
