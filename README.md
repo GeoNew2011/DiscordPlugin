@@ -1,4 +1,4 @@
-*130+ compatible*
+*146 compatible*
 
 ### Setup
 Make a bot and request a token. Make sure to give the bot some permissions.
@@ -13,12 +13,12 @@ I recommend to enable `Developer Mode` on discord. This is the easiest way to ge
 You can disable some commands by removing or leaving some fields blank `""` in the config file.
 
 #### Discord
-* `..chat <text...>` Send a message to the in-game chat
-* `..players` a list of the online players
-* `..info` gives some info (amount of enemies, number of waves, name of the map)
-* `..infores` amount of resources collected
-* `..gameover` ends a game 
-* `..maps` *custom* maps on the server
+* `;chat <text...>` Send a message to the in-game chat
+* `;players` a list of the online players
+* `;info` gives some info (amount of enemies, number of waves, name of the map)
+* `;infores` amount of resources collected
+* `;gameover` ends a game 
+* `;maps` *custom* maps on the server
 
 #### In-game
 * `/d <text...>` Send a message to discord.
