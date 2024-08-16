@@ -15,6 +15,8 @@ import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
+import arc.util.Log;
+
 
 public class comCommands implements MessageCreateListener {
     @Override
@@ -22,11 +24,11 @@ public class comCommands implements MessageCreateListener {
         String[] incoming_msg = event.getMessageContent().split("\\s+");
 
         switch (incoming_msg[0]){
-            case "..chat":
+            case ";chat":
                 String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
                 Call.sendMessage("[sky]" +event.getMessageAuthor().getName()+ " @discord >[] " + msg[1].trim());
                 break;
-            case "..players":
+            case ";players":
                 StringBuilder lijst = new StringBuilder();
                 StringBuilder admins = new StringBuilder();
                 lijst.append("players: " + Groups.player.size()+"\n");
@@ -42,21 +44,21 @@ public class comCommands implements MessageCreateListener {
                 }
                 new MessageBuilder().appendCode("", lijst.toString() + admins.toString()).send(event.getChannel());
                 break;
-            case "..info":
+            case ";info":
                 try {
                     StringBuilder lijst2 = new StringBuilder();
                     lijst2.append("map: " + Vars.state.map.name() + "\n" + "author: " + Vars.state.map.author() + "\n");
                     lijst2.append("wave: " + Vars.state.wave + "\n");
                     lijst2.append("enemies: " + Vars.state.enemies + "\n");
                     lijst2.append("players: " + Groups.player.size() + '\n');
-                    //lijst.append("admins (online): " + Vars.playerGroup.all().count(p -> p.isAdmin));
+                    lijst2.append("admins (online): " + Groups.player.count(p->p.admin));
                     new MessageBuilder().appendCode("", lijst2.toString()).send(event.getChannel());
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    Log.err(e.getMessage());
                     e.printStackTrace();
                 }
                 break;
-            case "..infores":
+            case ";infores":
                 //event.getChannel().sendMessage("not implemented yet...");
                 if (!Vars.state.rules.waves){
                     event.getChannel().sendMessage("Only available when playing survivalmode!");

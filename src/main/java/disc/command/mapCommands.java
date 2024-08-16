@@ -28,7 +28,7 @@ public class mapCommands implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().equalsIgnoreCase("..maps")) {
+        if (event.getMessageContent().equalsIgnoreCase(";maps")) {
             Vars.maps.reload();
             StringBuilder mapLijst = new StringBuilder();
             mapLijst.append("List of available maps:\n");
@@ -38,8 +38,8 @@ public class mapCommands implements MessageCreateListener {
             mapLijst.append("Total number of maps: " + Vars.maps.customMaps().size);
             new MessageBuilder().appendCode("", mapLijst.toString()).send(event.getChannel());
 
-        } else if (event.getMessageContent().startsWith("..changemap")) {
-            Role mapRole = mainData.discRoles.get("changeMap_role_id");
+        } else if (event.getMessageContent().startsWith(";changemap")) {
+            Role mapRole = mainData.discRoles.get("admin_role_id");
             if (mapRole == null) {
                 if (event.isPrivateMessage()) return;
                 event.getChannel().sendMessage(commandDisabled);
@@ -135,8 +135,8 @@ public class mapCommands implements MessageCreateListener {
 //                }
 //            }*/
 
-        } else if (event.getMessageContent().equals("..uploadmap")) {
-            Role mapConfigRole = mainData.discRoles.get("mapConfig_role_id");
+        } else if (event.getMessageContent().equals(";uploadmap")) {
+            Role mapConfigRole = mainData.discRoles.get("admin_role_id");
             if (mapConfigRole == null) {
                 if (event.isPrivateMessage()) return;
                 event.getChannel().sendMessage(commandDisabled);
@@ -182,8 +182,8 @@ public class mapCommands implements MessageCreateListener {
 //            Vars.maps.reload();
 //            event.getChannel().sendMessage(ml.get(0).getFileName() + " added succesfully!");
 
-        } else if (event.getMessageContent().startsWith("..removemap")) {
-            Role mapConfigRole = mainData.discRoles.get("mapConfig_role_id");
+        } else if (event.getMessageContent().startsWith(";removemap")) {
+            Role mapConfigRole = mainData.discRoles.get("admin_role_id");
             if (mapConfigRole == null) {
                 if (event.isPrivateMessage()) return;
                 event.getChannel().sendMessage(commandDisabled);
