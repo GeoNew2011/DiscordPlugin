@@ -1,7 +1,7 @@
 {
   "name": "DiscordPlugin",
-  "author": "Fishbuilder",
+  "author": "Fishbuilder, [red]DOO[cyan]Mer_3D",
   "main": "disc.discordPlugin",
   "description": "interaction with discord",
-  "version": 1.130
+  "version": 1.1
 }
